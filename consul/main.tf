@@ -17,42 +17,55 @@ data "docker_registry_image" "consul" {
 }
 
 variable "consul_ports" {
-  type = list(object({ port = number, protocol = string }))
+  type = list(object({
+    internal = number,
+    external = number,
+    protocol = string
+  }))
   default = [
     {
-      port     = 8300
+      internal = 8300
+      external = 8300
       protocol = "tcp"
     },
     {
-      port     = 8301
+      internal = 8301
+      external = 8301
       protocol = "tcp"
     },
     {
-      port     = 8301
+      internal = 8301
+      external = 8301
       protocol = "udp"
     },
     {
-      port     = 8302
+      internal = 8302
+      external = 8302
       protocol = "tcp"
     },
     {
-      port     = 8302
+      internal = 8302
+      external = 8302
       protocol = "udp"
     },
     {
-      port     = 8400
+      internal = 8400
+      external = 8400
       protocol = "tcp"
     },
     {
-      port     = 8500
+      internal = 8500
+      external = 8500
       protocol = "tcp"
     },
     {
-      port     = 8600
+      internal = 8600
+      external = 8600
       protocol = "tcp"
     },
     {
-      port     = 8600
+      internal = 8600
+      external = 53
       protocol = "udp"
     }
   ]
@@ -67,6 +80,7 @@ resource "docker_image" "consul" {
 resource "docker_container" "consul" {
   depends_on = [null_resource.consul_directory]
   name       = random_pet.pet_name.id
+  hostname   = "consul"
   image      = docker_image.consul.latest
   volumes {
     host_path      = "/tmp/consul-data"
@@ -84,8 +98,8 @@ resource "docker_container" "consul" {
     for_each = var.consul_ports
     content {
       protocol = ports.value.protocol
-      internal = ports.value.port
-      external = ports.value.port
+      internal = ports.value.internal
+      external = ports.value.external
     }
   }
 }

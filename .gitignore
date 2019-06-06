@@ -1,0 +1,6 @@
+terraform-provider-*
+.DS_Store
+
+./*.tfstate
+.terraform/
+*.log

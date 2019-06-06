@@ -1,12 +1,13 @@
 {
-  "backend": {
-    "file": {
+  "storage": {
+    "consul": {
+      "address": "${consul_host}:8500",
       "path": "vault/data"
     }
   },
   "listener": {
-    "tcp":{
-      "address": "127.0.0.1:8200",
+    "tcp": {
+      "address": "0.0.0.0:8200",
       "tls_disable": 1
     }
   },

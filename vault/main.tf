@@ -1,5 +1,5 @@
-variable "network" {}
 variable "consul_host" {}
+variable "network" {}
 
 data "docker_registry_image" "vault" {
   name = "vault"
@@ -20,21 +20,26 @@ resource "docker_container" "vault" {
   name  = random_pet.pet_name.id
   image = docker_image.vault.latest
 
+  networks_advanced {
+    name = var.network
+  }
+
   upload {
     content = templatefile("${path.module}/vault-config.json.tpl", { consul_host = var.consul_host })
     file    = "/vault/config/vault-config.json"
   }
 
   capabilities {
-    add = ["IPC_LOCK"]
+    add = ["IPC_LOCK", "NET_ADMIN", "SYS_PTRACE"]
   }
 
   ports {
     internal = 8200
     external = 8200
+    protocol = "tcp"
   }
 
-  command = ["server", "-config=/vault/config/vault-config.json"]
+  command = ["vault", "server", "-config=/vault/config/vault-config.json"]
 }
 
 
