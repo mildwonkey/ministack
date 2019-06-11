@@ -1,19 +1,22 @@
-resource "docker_network" "private_network" {
-  name   = "devops"
-  driver = "bridge"
+module "network" {
+  source = "./modules/network"
 }
 
-
 module "consul_container" {
-  source  = "./consul"
-  network = docker_network.private_network.name
+  source  = "./modules/consul"
+  network = module.network.docker_network
 }
 
 module "vault_container" {
-  source      = "./vault"
-  network     = docker_network.private_network.name
+  source      = "./modules/vault"
+  network     = module.network.docker_network
   consul_host = module.consul_container.container_name
 }
 
-// template_file backend config? 
+output "consul_container" {
+  value = module.consul_container.container_name
+}
 
+output "vault_container" {
+  value = module.vault_container.container_name
+}

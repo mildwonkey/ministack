@@ -1,5 +1,7 @@
 variable "consul_host" {}
-variable "network" {}
+variable "network" {
+  description = "An entire `docker_network` resource"
+}
 
 data "docker_registry_image" "vault" {
   name = "vault"
@@ -21,7 +23,7 @@ resource "docker_container" "vault" {
   image = docker_image.vault.latest
 
   networks_advanced {
-    name = var.network
+    name = var.network.name
   }
 
   upload {
@@ -42,4 +44,6 @@ resource "docker_container" "vault" {
   command = ["vault", "server", "-config=/vault/config/vault-config.json"]
 }
 
-
+output "container_name" {
+  value = docker_container.vault.name
+}

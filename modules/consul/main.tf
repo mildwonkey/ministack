@@ -1,5 +1,3 @@
-variable "network" {}
-
 // create a volume
 resource "null_resource" "consul_directory" {
   provisioner "local-exec" {
@@ -14,61 +12,6 @@ resource "random_pet" "pet_name" {
 
 data "docker_registry_image" "consul" {
   name = "consul"
-}
-
-variable "consul_ports" {
-  type = list(object({
-    internal = number,
-    external = number,
-    protocol = string
-  }))
-  default = [
-    {
-      internal = 8300
-      external = 8300
-      protocol = "tcp"
-    },
-    {
-      internal = 8301
-      external = 8301
-      protocol = "tcp"
-    },
-    {
-      internal = 8301
-      external = 8301
-      protocol = "udp"
-    },
-    {
-      internal = 8302
-      external = 8302
-      protocol = "tcp"
-    },
-    {
-      internal = 8302
-      external = 8302
-      protocol = "udp"
-    },
-    {
-      internal = 8400
-      external = 8400
-      protocol = "tcp"
-    },
-    {
-      internal = 8500
-      external = 8500
-      protocol = "tcp"
-    },
-    {
-      internal = 8600
-      external = 8600
-      protocol = "tcp"
-    },
-    {
-      internal = 8600
-      external = 53
-      protocol = "udp"
-    }
-  ]
 }
 
 resource "docker_image" "consul" {
@@ -87,7 +30,7 @@ resource "docker_container" "consul" {
     container_path = "/consul/data"
   }
   networks_advanced {
-    name = var.network
+    name = var.network.name
   }
 
   env = [
@@ -95,7 +38,7 @@ resource "docker_container" "consul" {
   ]
 
   dynamic "ports" {
-    for_each = var.consul_ports
+    for_each = "${var.consul_ports}"
     content {
       protocol = ports.value.protocol
       internal = ports.value.internal
