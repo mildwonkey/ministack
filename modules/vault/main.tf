@@ -27,7 +27,7 @@ resource "docker_container" "vault" {
   }
 
   upload {
-    content = templatefile("${path.module}/vault-config.json.tpl", { consul_host = var.consul_host })
+    content = templatefile("${path.module}/vault-config.json.tpl", { consul_host = var.consul_host.name })
     file    = "/vault/config/vault-config.json"
   }
 

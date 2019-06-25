@@ -47,6 +47,6 @@ resource "docker_container" "consul" {
   }
 }
 
-output "container_name" {
-  value = docker_container.consul.name
+output "consul_container" {
+  value = docker_container.consul
 }
