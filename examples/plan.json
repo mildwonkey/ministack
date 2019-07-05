@@ -1,1 +1,1572 @@
-{"format_version":"0.1","terraform_version":"0.12.3","planned_values":{"root_module":{"child_modules":[{"resources":[{"address":"module.consul_container.docker_container.consul","mode":"managed","type":"docker_container","name":"consul","provider_name":"docker","schema_version":1,"values":{"attach":false,"capabilities":[],"command":null,"cpu_set":null,"cpu_shares":null,"destroy_grace_seconds":null,"devices":[],"dns":null,"dns_opts":null,"dns_search":null,"domainname":null,"entrypoint":null,"env":["CONSUL_HTTP_TOKEN=supersecure"],"healthcheck":[],"host":[],"hostname":"consul","labels":null,"links":null,"log_driver":"json-file","log_opts":null,"logs":false,"max_retry_count":null,"memory":null,"memory_swap":null,"mounts":[],"must_run":true,"name":"consul-settling-rabbit","network_alias":null,"network_mode":null,"networks":null,"networks_advanced":[{"aliases":[],"ipv4_address":"","ipv6_address":"","name":"ministack"}],"pid_mode":null,"ports":[{"external":8300,"internal":8300,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"udp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"tcp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"udp"},{"external":8400,"internal":8400,"ip":"0.0.0.0","protocol":"tcp"},{"external":8500,"internal":8500,"ip":"0.0.0.0","protocol":"tcp"},{"external":8600,"internal":8600,"ip":"0.0.0.0","protocol":"tcp"},{"external":53,"internal":8600,"ip":"0.0.0.0","protocol":"udp"}],"privileged":null,"publish_all_ports":null,"restart":"no","rm":false,"start":true,"tmpfs":null,"ulimit":[],"upload":[],"user":null,"userns_mode":null,"volumes":[{"container_path":"/consul/data","from_container":"","host_path":"/tmp/consul-data","read_only":null,"volume_name":""}]}},{"address":"module.consul_container.docker_image.consul","mode":"managed","type":"docker_image","name":"consul","provider_name":"docker","schema_version":0,"values":{"keep_locally":null,"name":"consul","pull_trigger":null,"pull_triggers":["sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"]}},{"address":"module.consul_container.null_resource.consul_directory","mode":"managed","type":"null_resource","name":"consul_directory","provider_name":"null","schema_version":0,"values":{"id":"1589975742904562834","triggers":null}},{"address":"module.consul_container.random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","schema_version":0,"values":{"id":"consul-settling-rabbit","keepers":null,"length":2,"prefix":"consul","separator":"-"}}],"address":"module.consul_container"},{"resources":[{"address":"module.network.docker_network.private_network","mode":"managed","type":"docker_network","name":"private_network","provider_name":"docker","schema_version":0,"values":{"attachable":false,"check_duplicate":null,"driver":"bridge","id":"5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a","ingress":false,"internal":false,"ipam_config":[{"aux_address":{},"gateway":"172.23.0.1","ip_range":"","subnet":"172.23.0.0/16"}],"ipam_driver":null,"ipv6":false,"labels":null,"name":"ministack","options":{},"scope":"local"}}],"address":"module.network"},{"resources":[{"address":"module.vault_container.docker_container.vault","mode":"managed","type":"docker_container","name":"vault","provider_name":"docker","schema_version":1,"values":{"attach":false,"capabilities":[{"add":["IPC_LOCK","NET_ADMIN","SYS_PTRACE"],"drop":[]}],"command":["vault","server","-config=/vault/config/vault-config.json"],"cpu_set":null,"cpu_shares":null,"destroy_grace_seconds":null,"devices":[],"dns":null,"dns_opts":null,"dns_search":null,"domainname":null,"entrypoint":null,"env":null,"healthcheck":[],"host":[],"hostname":null,"image":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","labels":null,"links":null,"log_driver":"json-file","log_opts":null,"logs":false,"max_retry_count":null,"memory":null,"memory_swap":null,"mounts":[],"must_run":true,"name":"vault-wealthy-chimp","network_alias":null,"network_mode":null,"networks":null,"networks_advanced":[{"aliases":[],"ipv4_address":"","ipv6_address":"","name":"ministack"}],"pid_mode":null,"ports":[{"external":8200,"internal":8200,"ip":"0.0.0.0","protocol":"tcp"}],"privileged":null,"publish_all_ports":null,"restart":"no","rm":false,"start":true,"tmpfs":null,"ulimit":[],"upload":[{"content":"{\n  \"storage\": {\n    \"consul\": {\n      \"address\": \"consul-settling-rabbit:8500\",\n      \"path\": \"vault/data\"\n    }\n  },\n  \"listener\": {\n    \"tcp\": {\n      \"address\": \"0.0.0.0:8200\",\n      \"tls_disable\": 1\n    }\n  },\n  \"ui\": true\n}","executable":false,"file":"/vault/config/vault-config.json"}],"user":null,"userns_mode":null,"volumes":[]}},{"address":"module.vault_container.docker_image.vault","mode":"managed","type":"docker_image","name":"vault","provider_name":"docker","schema_version":0,"values":{"id":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault","keep_locally":null,"latest":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","name":"vault","pull_trigger":null,"pull_triggers":["sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"]}},{"address":"module.vault_container.random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","schema_version":0,"values":{"id":"vault-wealthy-chimp","keepers":null,"length":2,"prefix":"vault","separator":"-"}}],"address":"module.vault_container"}]}},"resource_changes":[{"address":"module.consul_container.docker_container.consul","module_address":"module.consul_container","mode":"managed","type":"docker_container","name":"consul","provider_name":"docker","change":{"actions":["create"],"before":null,"after":{"attach":false,"capabilities":[],"command":null,"cpu_set":null,"cpu_shares":null,"destroy_grace_seconds":null,"devices":[],"dns":null,"dns_opts":null,"dns_search":null,"domainname":null,"entrypoint":null,"env":["CONSUL_HTTP_TOKEN=supersecure"],"healthcheck":[],"host":[],"hostname":"consul","labels":null,"links":null,"log_driver":"json-file","log_opts":null,"logs":false,"max_retry_count":null,"memory":null,"memory_swap":null,"mounts":[],"must_run":true,"name":"consul-settling-rabbit","network_alias":null,"network_mode":null,"networks":null,"networks_advanced":[{"aliases":[],"ipv4_address":"","ipv6_address":"","name":"ministack"}],"pid_mode":null,"ports":[{"external":8300,"internal":8300,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"udp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"tcp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"udp"},{"external":8400,"internal":8400,"ip":"0.0.0.0","protocol":"tcp"},{"external":8500,"internal":8500,"ip":"0.0.0.0","protocol":"tcp"},{"external":8600,"internal":8600,"ip":"0.0.0.0","protocol":"tcp"},{"external":53,"internal":8600,"ip":"0.0.0.0","protocol":"udp"}],"privileged":null,"publish_all_ports":null,"restart":"no","rm":false,"start":true,"tmpfs":null,"ulimit":[],"upload":[],"user":null,"userns_mode":null,"volumes":[{"container_path":"/consul/data","from_container":"","host_path":"/tmp/consul-data","read_only":null,"volume_name":""}]},"after_unknown":{"bridge":true,"capabilities":[],"container_logs":true,"devices":[],"env":[false],"exit_code":true,"gateway":true,"healthcheck":[],"host":[],"id":true,"image":true,"ip_address":true,"ip_prefix_length":true,"mounts":[],"network_data":true,"networks_advanced":[{"aliases":[]}],"ports":[{},{},{},{},{},{},{},{},{}],"ulimit":[],"upload":[],"volumes":[{}]}}},{"address":"module.consul_container.docker_image.consul","module_address":"module.consul_container","mode":"managed","type":"docker_image","name":"consul","provider_name":"docker","change":{"actions":["delete","create"],"before":{"id":"sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599consul","keep_locally":null,"latest":"sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599","name":"consul","pull_trigger":null,"pull_triggers":["sha256:2ec19048abef7ff163206d7cd30147e6b2e5b73f260c2c6e4d092e648d4f68bc"]},"after":{"keep_locally":null,"name":"consul","pull_trigger":null,"pull_triggers":["sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"]},"after_unknown":{"id":true,"latest":true,"pull_triggers":[false]}}},{"address":"module.consul_container.null_resource.consul_directory","module_address":"module.consul_container","mode":"managed","type":"null_resource","name":"consul_directory","provider_name":"null","change":{"actions":["no-op"],"before":{"id":"1589975742904562834","triggers":null},"after":{"id":"1589975742904562834","triggers":null},"after_unknown":{}}},{"address":"module.consul_container.random_pet.pet_name","module_address":"module.consul_container","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","change":{"actions":["no-op"],"before":{"id":"consul-settling-rabbit","keepers":null,"length":2,"prefix":"consul","separator":"-"},"after":{"id":"consul-settling-rabbit","keepers":null,"length":2,"prefix":"consul","separator":"-"},"after_unknown":{}}},{"address":"module.network.docker_network.private_network","module_address":"module.network","mode":"managed","type":"docker_network","name":"private_network","provider_name":"docker","change":{"actions":["no-op"],"before":{"attachable":false,"check_duplicate":null,"driver":"bridge","id":"5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a","ingress":false,"internal":false,"ipam_config":[{"aux_address":{},"gateway":"172.23.0.1","ip_range":"","subnet":"172.23.0.0/16"}],"ipam_driver":null,"ipv6":false,"labels":null,"name":"ministack","options":{},"scope":"local"},"after":{"attachable":false,"check_duplicate":null,"driver":"bridge","id":"5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a","ingress":false,"internal":false,"ipam_config":[{"aux_address":{},"gateway":"172.23.0.1","ip_range":"","subnet":"172.23.0.0/16"}],"ipam_driver":null,"ipv6":false,"labels":null,"name":"ministack","options":{},"scope":"local"},"after_unknown":{}}},{"address":"module.vault_container.docker_container.vault","module_address":"module.vault_container","mode":"managed","type":"docker_container","name":"vault","provider_name":"docker","change":{"actions":["create"],"before":null,"after":{"attach":false,"capabilities":[{"add":["IPC_LOCK","NET_ADMIN","SYS_PTRACE"],"drop":[]}],"command":["vault","server","-config=/vault/config/vault-config.json"],"cpu_set":null,"cpu_shares":null,"destroy_grace_seconds":null,"devices":[],"dns":null,"dns_opts":null,"dns_search":null,"domainname":null,"entrypoint":null,"env":null,"healthcheck":[],"host":[],"hostname":null,"image":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","labels":null,"links":null,"log_driver":"json-file","log_opts":null,"logs":false,"max_retry_count":null,"memory":null,"memory_swap":null,"mounts":[],"must_run":true,"name":"vault-wealthy-chimp","network_alias":null,"network_mode":null,"networks":null,"networks_advanced":[{"aliases":[],"ipv4_address":"","ipv6_address":"","name":"ministack"}],"pid_mode":null,"ports":[{"external":8200,"internal":8200,"ip":"0.0.0.0","protocol":"tcp"}],"privileged":null,"publish_all_ports":null,"restart":"no","rm":false,"start":true,"tmpfs":null,"ulimit":[],"upload":[{"content":"{\n  \"storage\": {\n    \"consul\": {\n      \"address\": \"consul-settling-rabbit:8500\",\n      \"path\": \"vault/data\"\n    }\n  },\n  \"listener\": {\n    \"tcp\": {\n      \"address\": \"0.0.0.0:8200\",\n      \"tls_disable\": 1\n    }\n  },\n  \"ui\": true\n}","executable":false,"file":"/vault/config/vault-config.json"}],"user":null,"userns_mode":null,"volumes":[]},"after_unknown":{"bridge":true,"capabilities":[{"add":[false,false,false],"drop":[]}],"command":[false,false,false],"container_logs":true,"devices":[],"exit_code":true,"gateway":true,"healthcheck":[],"host":[],"id":true,"ip_address":true,"ip_prefix_length":true,"mounts":[],"network_data":true,"networks_advanced":[{"aliases":[]}],"ports":[{}],"ulimit":[],"upload":[{}],"volumes":[]}}},{"address":"module.vault_container.docker_image.vault","module_address":"module.vault_container","mode":"managed","type":"docker_image","name":"vault","provider_name":"docker","change":{"actions":["no-op"],"before":{"id":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault","keep_locally":null,"latest":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","name":"vault","pull_trigger":null,"pull_triggers":["sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"]},"after":{"id":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault","keep_locally":null,"latest":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","name":"vault","pull_trigger":null,"pull_triggers":["sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"]},"after_unknown":{}}},{"address":"module.vault_container.random_pet.pet_name","module_address":"module.vault_container","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","change":{"actions":["no-op"],"before":{"id":"vault-wealthy-chimp","keepers":null,"length":2,"prefix":"vault","separator":"-"},"after":{"id":"vault-wealthy-chimp","keepers":null,"length":2,"prefix":"vault","separator":"-"},"after_unknown":{}}}],"prior_state":{"format_version":"0.1","terraform_version":"0.12.3","values":{"outputs":{"consul_container":{"sensitive":false,"value":{"attach":false,"bridge":"","capabilities":[],"command":null,"container_logs":null,"cpu_set":null,"cpu_shares":null,"destroy_grace_seconds":null,"devices":[],"dns":null,"dns_opts":null,"dns_search":null,"domainname":null,"entrypoint":null,"env":["CONSUL_HTTP_TOKEN=supersecure"],"exit_code":null,"gateway":"172.23.0.1","healthcheck":[],"host":[],"hostname":"consul","id":"8690a639a440ab4f2c06933f7e168ffb62e4823c1d2b97912556734045306869","image":"sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599","ip_address":"172.23.0.2","ip_prefix_length":16,"labels":null,"links":null,"log_driver":"json-file","log_opts":null,"logs":false,"max_retry_count":null,"memory":null,"memory_swap":null,"mounts":[],"must_run":true,"name":"consul-settling-rabbit","network_alias":null,"network_data":[{"gateway":"172.23.0.1","ip_address":"172.23.0.2","ip_prefix_length":16,"network_name":"ministack"}],"network_mode":null,"networks":null,"networks_advanced":[{"aliases":[],"ipv4_address":"","ipv6_address":"","name":"ministack"}],"pid_mode":null,"ports":[{"external":8300,"internal":8300,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"tcp"},{"external":8301,"internal":8301,"ip":"0.0.0.0","protocol":"udp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"tcp"},{"external":8302,"internal":8302,"ip":"0.0.0.0","protocol":"udp"},{"external":8400,"internal":8400,"ip":"0.0.0.0","protocol":"tcp"},{"external":8500,"internal":8500,"ip":"0.0.0.0","protocol":"tcp"},{"external":8600,"internal":8600,"ip":"0.0.0.0","protocol":"tcp"},{"external":53,"internal":8600,"ip":"0.0.0.0","protocol":"udp"}],"privileged":null,"publish_all_ports":null,"restart":"no","rm":false,"start":true,"tmpfs":null,"ulimit":[],"upload":[],"user":null,"userns_mode":null,"volumes":[{"container_path":"/consul/data","from_container":"","host_path":"/tmp/consul-data","read_only":false,"volume_name":""}]}},"consul_container_ip":{"sensitive":false,"value":["172.23.0.2"]}},"root_module":{"child_modules":[{"resources":[{"address":"data.docker_registry_image.consul","mode":"data","type":"docker_registry_image","name":"consul","provider_name":"docker","schema_version":0,"values":{"id":"sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f","name":"consul","sha256_digest":"sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"}},{"address":"docker_image.consul","mode":"managed","type":"docker_image","name":"consul","provider_name":"docker","schema_version":0,"values":{"id":"sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599consul","keep_locally":null,"latest":"sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599","name":"consul","pull_trigger":null,"pull_triggers":["sha256:2ec19048abef7ff163206d7cd30147e6b2e5b73f260c2c6e4d092e648d4f68bc"]},"depends_on":["data.docker_registry_image.consul"]},{"address":"null_resource.consul_directory","mode":"managed","type":"null_resource","name":"consul_directory","provider_name":"null","schema_version":0,"values":{"id":"1589975742904562834","triggers":null}},{"address":"random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","schema_version":0,"values":{"id":"consul-settling-rabbit","keepers":null,"length":2,"prefix":"consul","separator":"-"}}],"address":"module.consul_container"},{"resources":[{"address":"data.docker_registry_image.vault","mode":"data","type":"docker_registry_image","name":"vault","provider_name":"docker","schema_version":0,"values":{"id":"sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9","name":"vault","sha256_digest":"sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"}},{"address":"docker_image.vault","mode":"managed","type":"docker_image","name":"vault","provider_name":"docker","schema_version":0,"values":{"id":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault","keep_locally":null,"latest":"sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0","name":"vault","pull_trigger":null,"pull_triggers":["sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"]},"depends_on":["data.docker_registry_image.vault"]},{"address":"random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_name":"random","schema_version":0,"values":{"id":"vault-wealthy-chimp","keepers":null,"length":2,"prefix":"vault","separator":"-"}}],"address":"module.vault_container"},{"resources":[{"address":"docker_network.private_network","mode":"managed","type":"docker_network","name":"private_network","provider_name":"docker","schema_version":0,"values":{"attachable":false,"check_duplicate":null,"driver":"bridge","id":"5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a","ingress":false,"internal":false,"ipam_config":[{"aux_address":{},"gateway":"172.23.0.1","ip_range":"","subnet":"172.23.0.0/16"}],"ipam_driver":null,"ipv6":false,"labels":null,"name":"ministack","options":{},"scope":"local"}}],"address":"module.network"}]}}},"configuration":{"root_module":{"module_calls":{"consul_container":{"source":"./modules/consul","expressions":{"network":{"references":["module.network.docker_network"]}},"module":{"outputs":{"consul_container":{"expression":{"references":["docker_container.consul"]}}},"resources":[{"address":"docker_container.consul","mode":"managed","type":"docker_container","name":"consul","provider_config_key":"consul_container:docker","expressions":{"env":{"constant_value":["CONSUL_HTTP_TOKEN=supersecure"]},"hostname":{"constant_value":"consul"},"image":{"references":["docker_image.consul"]},"name":{"references":["random_pet.pet_name"]},"networks_advanced":[{"name":{"references":["var.network"]}}],"volumes":[{"container_path":{"constant_value":"/consul/data"},"host_path":{"constant_value":"/tmp/consul-data"}}]},"schema_version":1,"depends_on":["null_resource.consul_directory"]},{"address":"docker_image.consul","mode":"managed","type":"docker_image","name":"consul","provider_config_key":"consul_container:docker","expressions":{"name":{"references":["data.docker_registry_image.consul"]},"pull_triggers":{"references":["data.docker_registry_image.consul"]}},"schema_version":0},{"address":"null_resource.consul_directory","mode":"managed","type":"null_resource","name":"consul_directory","provider_config_key":"consul_container:null","provisioners":[{"type":"local-exec","expressions":{"command":{"constant_value":"mkdir -p /tmp/consul-data"}}}],"schema_version":0},{"address":"random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_config_key":"consul_container:random","expressions":{"length":{"constant_value":2},"prefix":{"constant_value":"consul"}},"schema_version":0},{"address":"data.docker_registry_image.consul","mode":"data","type":"docker_registry_image","name":"consul","provider_config_key":"consul_container:docker","expressions":{"name":{"constant_value":"consul"}},"schema_version":0}],"variables":{"consul_ports":{"default":[{"external":8300,"internal":8300,"protocol":"tcp"},{"external":8301,"internal":8301,"protocol":"tcp"},{"external":8301,"internal":8301,"protocol":"udp"},{"external":8302,"internal":8302,"protocol":"tcp"},{"external":8302,"internal":8302,"protocol":"udp"},{"external":8400,"internal":8400,"protocol":"tcp"},{"external":8500,"internal":8500,"protocol":"tcp"},{"external":8600,"internal":8600,"protocol":"tcp"},{"external":53,"internal":8600,"protocol":"udp"}]},"network":{"description":"An entire `docker_network` resource"}}}},"network":{"source":"./modules/network","module":{"outputs":{"docker_network":{"expression":{"references":["docker_network.private_network"]}}},"resources":[{"address":"docker_network.private_network","mode":"managed","type":"docker_network","name":"private_network","provider_config_key":"network:docker","expressions":{"driver":{"constant_value":"bridge"},"ipam_config":[{"gateway":{"constant_value":"172.23.0.1"},"subnet":{"constant_value":"172.23.0.0/16"}}],"name":{"constant_value":"ministack"}},"schema_version":0}]}},"vault_container":{"source":"./modules/vault","expressions":{"consul_host":{"references":["module.consul_container.consul_container"]},"network":{"references":["module.network.docker_network"]}},"module":{"outputs":{"container_name":{"expression":{"references":["docker_container.vault"]}}},"resources":[{"address":"docker_container.vault","mode":"managed","type":"docker_container","name":"vault","provider_config_key":"vault_container:docker","expressions":{"capabilities":[{"add":{"constant_value":["IPC_LOCK","NET_ADMIN","SYS_PTRACE"]}}],"command":{"constant_value":["vault","server","-config=/vault/config/vault-config.json"]},"image":{"references":["docker_image.vault"]},"name":{"references":["random_pet.pet_name"]},"networks_advanced":[{"name":{"references":["var.network"]}}],"ports":[{"external":{"constant_value":8200},"internal":{"constant_value":8200},"protocol":{"constant_value":"tcp"}}],"upload":[{"content":{"references":["path.module","var.consul_host"]},"file":{"constant_value":"/vault/config/vault-config.json"}}]},"schema_version":1},{"address":"docker_image.vault","mode":"managed","type":"docker_image","name":"vault","provider_config_key":"vault_container:docker","expressions":{"name":{"references":["data.docker_registry_image.vault"]},"pull_triggers":{"references":["data.docker_registry_image.vault"]}},"schema_version":0},{"address":"random_pet.pet_name","mode":"managed","type":"random_pet","name":"pet_name","provider_config_key":"vault_container:random","expressions":{"length":{"constant_value":2},"prefix":{"constant_value":"vault"}},"schema_version":0},{"address":"data.docker_registry_image.vault","mode":"data","type":"docker_registry_image","name":"vault","provider_config_key":"vault_container:docker","expressions":{"name":{"constant_value":"vault"}},"schema_version":0}],"variables":{"consul_host":{},"network":{"description":"An entire `docker_network` resource"}}}}}}}}
+{
+    "format_version": "0.1",
+    "terraform_version": "0.12.3",
+    "planned_values": {
+        "root_module": {
+            "child_modules": [
+                {
+                    "resources": [
+                        {
+                            "address": "module.consul_container.docker_container.consul",
+                            "mode": "managed",
+                            "type": "docker_container",
+                            "name": "consul",
+                            "provider_name": "docker",
+                            "schema_version": 1,
+                            "values": {
+                                "attach": false,
+                                "capabilities": [],
+                                "command": null,
+                                "cpu_set": null,
+                                "cpu_shares": null,
+                                "destroy_grace_seconds": null,
+                                "devices": [],
+                                "dns": null,
+                                "dns_opts": null,
+                                "dns_search": null,
+                                "domainname": null,
+                                "entrypoint": null,
+                                "env": [
+                                    "CONSUL_HTTP_TOKEN=supersecure"
+                                ],
+                                "healthcheck": [],
+                                "host": [],
+                                "hostname": "consul",
+                                "labels": null,
+                                "links": null,
+                                "log_driver": "json-file",
+                                "log_opts": null,
+                                "logs": false,
+                                "max_retry_count": null,
+                                "memory": null,
+                                "memory_swap": null,
+                                "mounts": [],
+                                "must_run": true,
+                                "name": "consul-settling-rabbit",
+                                "network_alias": null,
+                                "network_mode": null,
+                                "networks": null,
+                                "networks_advanced": [
+                                    {
+                                        "aliases": [],
+                                        "ipv4_address": "",
+                                        "ipv6_address": "",
+                                        "name": "ministack"
+                                    }
+                                ],
+                                "pid_mode": null,
+                                "ports": [
+                                    {
+                                        "external": 8300,
+                                        "internal": 8300,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8301,
+                                        "internal": 8301,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8301,
+                                        "internal": 8301,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "udp"
+                                    },
+                                    {
+                                        "external": 8302,
+                                        "internal": 8302,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8302,
+                                        "internal": 8302,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "udp"
+                                    },
+                                    {
+                                        "external": 8400,
+                                        "internal": 8400,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8500,
+                                        "internal": 8500,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8600,
+                                        "internal": 8600,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 53,
+                                        "internal": 8600,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "udp"
+                                    }
+                                ],
+                                "privileged": null,
+                                "publish_all_ports": null,
+                                "restart": "no",
+                                "rm": false,
+                                "start": true,
+                                "tmpfs": null,
+                                "ulimit": [],
+                                "upload": [],
+                                "user": null,
+                                "userns_mode": null,
+                                "volumes": [
+                                    {
+                                        "container_path": "/consul/data",
+                                        "from_container": "",
+                                        "host_path": "/tmp/consul-data",
+                                        "read_only": null,
+                                        "volume_name": ""
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "address": "module.consul_container.docker_image.consul",
+                            "mode": "managed",
+                            "type": "docker_image",
+                            "name": "consul",
+                            "provider_name": "docker",
+                            "schema_version": 0,
+                            "values": {
+                                "keep_locally": null,
+                                "name": "consul",
+                                "pull_trigger": null,
+                                "pull_triggers": [
+                                    "sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"
+                                ]
+                            }
+                        },
+                        {
+                            "address": "module.consul_container.null_resource.consul_directory",
+                            "mode": "managed",
+                            "type": "null_resource",
+                            "name": "consul_directory",
+                            "provider_name": "null",
+                            "schema_version": 0,
+                            "values": {
+                                "id": "1589975742904562834",
+                                "triggers": null
+                            }
+                        },
+                        {
+                            "address": "module.consul_container.random_pet.pet_name",
+                            "mode": "managed",
+                            "type": "random_pet",
+                            "name": "pet_name",
+                            "provider_name": "random",
+                            "schema_version": 0,
+                            "values": {
+                                "id": "consul-settling-rabbit",
+                                "keepers": null,
+                                "length": 2,
+                                "prefix": "consul",
+                                "separator": "-"
+                            }
+                        }
+                    ],
+                    "address": "module.consul_container"
+                },
+                {
+                    "resources": [
+                        {
+                            "address": "module.network.docker_network.private_network",
+                            "mode": "managed",
+                            "type": "docker_network",
+                            "name": "private_network",
+                            "provider_name": "docker",
+                            "schema_version": 0,
+                            "values": {
+                                "attachable": false,
+                                "check_duplicate": null,
+                                "driver": "bridge",
+                                "id": "5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a",
+                                "ingress": false,
+                                "internal": false,
+                                "ipam_config": [
+                                    {
+                                        "aux_address": {},
+                                        "gateway": "172.23.0.1",
+                                        "ip_range": "",
+                                        "subnet": "172.23.0.0/16"
+                                    }
+                                ],
+                                "ipam_driver": null,
+                                "ipv6": false,
+                                "labels": null,
+                                "name": "ministack",
+                                "options": {},
+                                "scope": "local"
+                            }
+                        }
+                    ],
+                    "address": "module.network"
+                },
+                {
+                    "resources": [
+                        {
+                            "address": "module.vault_container.docker_container.vault",
+                            "mode": "managed",
+                            "type": "docker_container",
+                            "name": "vault",
+                            "provider_name": "docker",
+                            "schema_version": 1,
+                            "values": {
+                                "attach": false,
+                                "capabilities": [
+                                    {
+                                        "add": [
+                                            "IPC_LOCK",
+                                            "NET_ADMIN",
+                                            "SYS_PTRACE"
+                                        ],
+                                        "drop": []
+                                    }
+                                ],
+                                "command": [
+                                    "vault",
+                                    "server",
+                                    "-config=/vault/config/vault-config.json"
+                                ],
+                                "cpu_set": null,
+                                "cpu_shares": null,
+                                "destroy_grace_seconds": null,
+                                "devices": [],
+                                "dns": null,
+                                "dns_opts": null,
+                                "dns_search": null,
+                                "domainname": null,
+                                "entrypoint": null,
+                                "env": null,
+                                "healthcheck": [],
+                                "host": [],
+                                "hostname": null,
+                                "image": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                                "labels": null,
+                                "links": null,
+                                "log_driver": "json-file",
+                                "log_opts": null,
+                                "logs": false,
+                                "max_retry_count": null,
+                                "memory": null,
+                                "memory_swap": null,
+                                "mounts": [],
+                                "must_run": true,
+                                "name": "vault-wealthy-chimp",
+                                "network_alias": null,
+                                "network_mode": null,
+                                "networks": null,
+                                "networks_advanced": [
+                                    {
+                                        "aliases": [],
+                                        "ipv4_address": "",
+                                        "ipv6_address": "",
+                                        "name": "ministack"
+                                    }
+                                ],
+                                "pid_mode": null,
+                                "ports": [
+                                    {
+                                        "external": 8200,
+                                        "internal": 8200,
+                                        "ip": "0.0.0.0",
+                                        "protocol": "tcp"
+                                    }
+                                ],
+                                "privileged": null,
+                                "publish_all_ports": null,
+                                "restart": "no",
+                                "rm": false,
+                                "start": true,
+                                "tmpfs": null,
+                                "ulimit": [],
+                                "upload": [
+                                    {
+                                        "content": "{\n  \"storage\": {\n    \"consul\": {\n      \"address\": \"consul-settling-rabbit:8500\",\n      \"path\": \"vault/data\"\n    }\n  },\n  \"listener\": {\n    \"tcp\": {\n      \"address\": \"0.0.0.0:8200\",\n      \"tls_disable\": 1\n    }\n  },\n  \"ui\": true\n}",
+                                        "executable": false,
+                                        "file": "/vault/config/vault-config.json"
+                                    }
+                                ],
+                                "user": null,
+                                "userns_mode": null,
+                                "volumes": []
+                            }
+                        },
+                        {
+                            "address": "module.vault_container.docker_image.vault",
+                            "mode": "managed",
+                            "type": "docker_image",
+                            "name": "vault",
+                            "provider_name": "docker",
+                            "schema_version": 0,
+                            "values": {
+                                "id": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault",
+                                "keep_locally": null,
+                                "latest": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                                "name": "vault",
+                                "pull_trigger": null,
+                                "pull_triggers": [
+                                    "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"
+                                ]
+                            }
+                        },
+                        {
+                            "address": "module.vault_container.random_pet.pet_name",
+                            "mode": "managed",
+                            "type": "random_pet",
+                            "name": "pet_name",
+                            "provider_name": "random",
+                            "schema_version": 0,
+                            "values": {
+                                "id": "vault-wealthy-chimp",
+                                "keepers": null,
+                                "length": 2,
+                                "prefix": "vault",
+                                "separator": "-"
+                            }
+                        }
+                    ],
+                    "address": "module.vault_container"
+                }
+            ]
+        }
+    },
+    "resource_changes": [
+        {
+            "address": "module.consul_container.docker_container.consul",
+            "module_address": "module.consul_container",
+            "mode": "managed",
+            "type": "docker_container",
+            "name": "consul",
+            "provider_name": "docker",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "attach": false,
+                    "capabilities": [],
+                    "command": null,
+                    "cpu_set": null,
+                    "cpu_shares": null,
+                    "destroy_grace_seconds": null,
+                    "devices": [],
+                    "dns": null,
+                    "dns_opts": null,
+                    "dns_search": null,
+                    "domainname": null,
+                    "entrypoint": null,
+                    "env": [
+                        "CONSUL_HTTP_TOKEN=supersecure"
+                    ],
+                    "healthcheck": [],
+                    "host": [],
+                    "hostname": "consul",
+                    "labels": null,
+                    "links": null,
+                    "log_driver": "json-file",
+                    "log_opts": null,
+                    "logs": false,
+                    "max_retry_count": null,
+                    "memory": null,
+                    "memory_swap": null,
+                    "mounts": [],
+                    "must_run": true,
+                    "name": "consul-settling-rabbit",
+                    "network_alias": null,
+                    "network_mode": null,
+                    "networks": null,
+                    "networks_advanced": [
+                        {
+                            "aliases": [],
+                            "ipv4_address": "",
+                            "ipv6_address": "",
+                            "name": "ministack"
+                        }
+                    ],
+                    "pid_mode": null,
+                    "ports": [
+                        {
+                            "external": 8300,
+                            "internal": 8300,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 8301,
+                            "internal": 8301,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 8301,
+                            "internal": 8301,
+                            "ip": "0.0.0.0",
+                            "protocol": "udp"
+                        },
+                        {
+                            "external": 8302,
+                            "internal": 8302,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 8302,
+                            "internal": 8302,
+                            "ip": "0.0.0.0",
+                            "protocol": "udp"
+                        },
+                        {
+                            "external": 8400,
+                            "internal": 8400,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 8500,
+                            "internal": 8500,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 8600,
+                            "internal": 8600,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        },
+                        {
+                            "external": 53,
+                            "internal": 8600,
+                            "ip": "0.0.0.0",
+                            "protocol": "udp"
+                        }
+                    ],
+                    "privileged": null,
+                    "publish_all_ports": null,
+                    "restart": "no",
+                    "rm": false,
+                    "start": true,
+                    "tmpfs": null,
+                    "ulimit": [],
+                    "upload": [],
+                    "user": null,
+                    "userns_mode": null,
+                    "volumes": [
+                        {
+                            "container_path": "/consul/data",
+                            "from_container": "",
+                            "host_path": "/tmp/consul-data",
+                            "read_only": null,
+                            "volume_name": ""
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bridge": true,
+                    "capabilities": [],
+                    "container_logs": true,
+                    "devices": [],
+                    "env": [
+                        false
+                    ],
+                    "exit_code": true,
+                    "gateway": true,
+                    "healthcheck": [],
+                    "host": [],
+                    "id": true,
+                    "image": true,
+                    "ip_address": true,
+                    "ip_prefix_length": true,
+                    "mounts": [],
+                    "network_data": true,
+                    "networks_advanced": [
+                        {
+                            "aliases": []
+                        }
+                    ],
+                    "ports": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                    ],
+                    "ulimit": [],
+                    "upload": [],
+                    "volumes": [
+                        {}
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.consul_container.docker_image.consul",
+            "module_address": "module.consul_container",
+            "mode": "managed",
+            "type": "docker_image",
+            "name": "consul",
+            "provider_name": "docker",
+            "change": {
+                "actions": [
+                    "delete",
+                    "create"
+                ],
+                "before": {
+                    "id": "sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599consul",
+                    "keep_locally": null,
+                    "latest": "sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599",
+                    "name": "consul",
+                    "pull_trigger": null,
+                    "pull_triggers": [
+                        "sha256:2ec19048abef7ff163206d7cd30147e6b2e5b73f260c2c6e4d092e648d4f68bc"
+                    ]
+                },
+                "after": {
+                    "keep_locally": null,
+                    "name": "consul",
+                    "pull_trigger": null,
+                    "pull_triggers": [
+                        "sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"
+                    ]
+                },
+                "after_unknown": {
+                    "id": true,
+                    "latest": true,
+                    "pull_triggers": [
+                        false
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.consul_container.null_resource.consul_directory",
+            "module_address": "module.consul_container",
+            "mode": "managed",
+            "type": "null_resource",
+            "name": "consul_directory",
+            "provider_name": "null",
+            "change": {
+                "actions": [
+                    "no-op"
+                ],
+                "before": {
+                    "id": "1589975742904562834",
+                    "triggers": null
+                },
+                "after": {
+                    "id": "1589975742904562834",
+                    "triggers": null
+                },
+                "after_unknown": {}
+            }
+        },
+        {
+            "address": "module.consul_container.random_pet.pet_name",
+            "module_address": "module.consul_container",
+            "mode": "managed",
+            "type": "random_pet",
+            "name": "pet_name",
+            "provider_name": "random",
+            "change": {
+                "actions": [
+                    "no-op"
+                ],
+                "before": {
+                    "id": "consul-settling-rabbit",
+                    "keepers": null,
+                    "length": 2,
+                    "prefix": "consul",
+                    "separator": "-"
+                },
+                "after": {
+                    "id": "consul-settling-rabbit",
+                    "keepers": null,
+                    "length": 2,
+                    "prefix": "consul",
+                    "separator": "-"
+                },
+                "after_unknown": {}
+            }
+        },
+        {
+            "address": "module.network.docker_network.private_network",
+            "module_address": "module.network",
+            "mode": "managed",
+            "type": "docker_network",
+            "name": "private_network",
+            "provider_name": "docker",
+            "change": {
+                "actions": [
+                    "no-op"
+                ],
+                "before": {
+                    "attachable": false,
+                    "check_duplicate": null,
+                    "driver": "bridge",
+                    "id": "5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a",
+                    "ingress": false,
+                    "internal": false,
+                    "ipam_config": [
+                        {
+                            "aux_address": {},
+                            "gateway": "172.23.0.1",
+                            "ip_range": "",
+                            "subnet": "172.23.0.0/16"
+                        }
+                    ],
+                    "ipam_driver": null,
+                    "ipv6": false,
+                    "labels": null,
+                    "name": "ministack",
+                    "options": {},
+                    "scope": "local"
+                },
+                "after": {
+                    "attachable": false,
+                    "check_duplicate": null,
+                    "driver": "bridge",
+                    "id": "5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a",
+                    "ingress": false,
+                    "internal": false,
+                    "ipam_config": [
+                        {
+                            "aux_address": {},
+                            "gateway": "172.23.0.1",
+                            "ip_range": "",
+                            "subnet": "172.23.0.0/16"
+                        }
+                    ],
+                    "ipam_driver": null,
+                    "ipv6": false,
+                    "labels": null,
+                    "name": "ministack",
+                    "options": {},
+                    "scope": "local"
+                },
+                "after_unknown": {}
+            }
+        },
+        {
+            "address": "module.vault_container.docker_container.vault",
+            "module_address": "module.vault_container",
+            "mode": "managed",
+            "type": "docker_container",
+            "name": "vault",
+            "provider_name": "docker",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "attach": false,
+                    "capabilities": [
+                        {
+                            "add": [
+                                "IPC_LOCK",
+                                "NET_ADMIN",
+                                "SYS_PTRACE"
+                            ],
+                            "drop": []
+                        }
+                    ],
+                    "command": [
+                        "vault",
+                        "server",
+                        "-config=/vault/config/vault-config.json"
+                    ],
+                    "cpu_set": null,
+                    "cpu_shares": null,
+                    "destroy_grace_seconds": null,
+                    "devices": [],
+                    "dns": null,
+                    "dns_opts": null,
+                    "dns_search": null,
+                    "domainname": null,
+                    "entrypoint": null,
+                    "env": null,
+                    "healthcheck": [],
+                    "host": [],
+                    "hostname": null,
+                    "image": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                    "labels": null,
+                    "links": null,
+                    "log_driver": "json-file",
+                    "log_opts": null,
+                    "logs": false,
+                    "max_retry_count": null,
+                    "memory": null,
+                    "memory_swap": null,
+                    "mounts": [],
+                    "must_run": true,
+                    "name": "vault-wealthy-chimp",
+                    "network_alias": null,
+                    "network_mode": null,
+                    "networks": null,
+                    "networks_advanced": [
+                        {
+                            "aliases": [],
+                            "ipv4_address": "",
+                            "ipv6_address": "",
+                            "name": "ministack"
+                        }
+                    ],
+                    "pid_mode": null,
+                    "ports": [
+                        {
+                            "external": 8200,
+                            "internal": 8200,
+                            "ip": "0.0.0.0",
+                            "protocol": "tcp"
+                        }
+                    ],
+                    "privileged": null,
+                    "publish_all_ports": null,
+                    "restart": "no",
+                    "rm": false,
+                    "start": true,
+                    "tmpfs": null,
+                    "ulimit": [],
+                    "upload": [
+                        {
+                            "content": "{\n  \"storage\": {\n    \"consul\": {\n      \"address\": \"consul-settling-rabbit:8500\",\n      \"path\": \"vault/data\"\n    }\n  },\n  \"listener\": {\n    \"tcp\": {\n      \"address\": \"0.0.0.0:8200\",\n      \"tls_disable\": 1\n    }\n  },\n  \"ui\": true\n}",
+                            "executable": false,
+                            "file": "/vault/config/vault-config.json"
+                        }
+                    ],
+                    "user": null,
+                    "userns_mode": null,
+                    "volumes": []
+                },
+                "after_unknown": {
+                    "bridge": true,
+                    "capabilities": [
+                        {
+                            "add": [
+                                false,
+                                false,
+                                false
+                            ],
+                            "drop": []
+                        }
+                    ],
+                    "command": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "container_logs": true,
+                    "devices": [],
+                    "exit_code": true,
+                    "gateway": true,
+                    "healthcheck": [],
+                    "host": [],
+                    "id": true,
+                    "ip_address": true,
+                    "ip_prefix_length": true,
+                    "mounts": [],
+                    "network_data": true,
+                    "networks_advanced": [
+                        {
+                            "aliases": []
+                        }
+                    ],
+                    "ports": [
+                        {}
+                    ],
+                    "ulimit": [],
+                    "upload": [
+                        {}
+                    ],
+                    "volumes": []
+                }
+            }
+        },
+        {
+            "address": "module.vault_container.docker_image.vault",
+            "module_address": "module.vault_container",
+            "mode": "managed",
+            "type": "docker_image",
+            "name": "vault",
+            "provider_name": "docker",
+            "change": {
+                "actions": [
+                    "no-op"
+                ],
+                "before": {
+                    "id": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault",
+                    "keep_locally": null,
+                    "latest": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                    "name": "vault",
+                    "pull_trigger": null,
+                    "pull_triggers": [
+                        "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"
+                    ]
+                },
+                "after": {
+                    "id": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault",
+                    "keep_locally": null,
+                    "latest": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                    "name": "vault",
+                    "pull_trigger": null,
+                    "pull_triggers": [
+                        "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"
+                    ]
+                },
+                "after_unknown": {}
+            }
+        },
+        {
+            "address": "module.vault_container.random_pet.pet_name",
+            "module_address": "module.vault_container",
+            "mode": "managed",
+            "type": "random_pet",
+            "name": "pet_name",
+            "provider_name": "random",
+            "change": {
+                "actions": [
+                    "no-op"
+                ],
+                "before": {
+                    "id": "vault-wealthy-chimp",
+                    "keepers": null,
+                    "length": 2,
+                    "prefix": "vault",
+                    "separator": "-"
+                },
+                "after": {
+                    "id": "vault-wealthy-chimp",
+                    "keepers": null,
+                    "length": 2,
+                    "prefix": "vault",
+                    "separator": "-"
+                },
+                "after_unknown": {}
+            }
+        }
+    ],
+    "prior_state": {
+        "format_version": "0.1",
+        "terraform_version": "0.12.3",
+        "values": {
+            "outputs": {
+                "consul_container": {
+                    "sensitive": false,
+                    "value": {
+                        "attach": false,
+                        "bridge": "",
+                        "capabilities": [],
+                        "command": null,
+                        "container_logs": null,
+                        "cpu_set": null,
+                        "cpu_shares": null,
+                        "destroy_grace_seconds": null,
+                        "devices": [],
+                        "dns": null,
+                        "dns_opts": null,
+                        "dns_search": null,
+                        "domainname": null,
+                        "entrypoint": null,
+                        "env": [
+                            "CONSUL_HTTP_TOKEN=supersecure"
+                        ],
+                        "exit_code": null,
+                        "gateway": "172.23.0.1",
+                        "healthcheck": [],
+                        "host": [],
+                        "hostname": "consul",
+                        "id": "8690a639a440ab4f2c06933f7e168ffb62e4823c1d2b97912556734045306869",
+                        "image": "sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599",
+                        "ip_address": "172.23.0.2",
+                        "ip_prefix_length": 16,
+                        "labels": null,
+                        "links": null,
+                        "log_driver": "json-file",
+                        "log_opts": null,
+                        "logs": false,
+                        "max_retry_count": null,
+                        "memory": null,
+                        "memory_swap": null,
+                        "mounts": [],
+                        "must_run": true,
+                        "name": "consul-settling-rabbit",
+                        "network_alias": null,
+                        "network_data": [
+                            {
+                                "gateway": "172.23.0.1",
+                                "ip_address": "172.23.0.2",
+                                "ip_prefix_length": 16,
+                                "network_name": "ministack"
+                            }
+                        ],
+                        "network_mode": null,
+                        "networks": null,
+                        "networks_advanced": [
+                            {
+                                "aliases": [],
+                                "ipv4_address": "",
+                                "ipv6_address": "",
+                                "name": "ministack"
+                            }
+                        ],
+                        "pid_mode": null,
+                        "ports": [
+                            {
+                                "external": 8300,
+                                "internal": 8300,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 8301,
+                                "internal": 8301,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 8301,
+                                "internal": 8301,
+                                "ip": "0.0.0.0",
+                                "protocol": "udp"
+                            },
+                            {
+                                "external": 8302,
+                                "internal": 8302,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 8302,
+                                "internal": 8302,
+                                "ip": "0.0.0.0",
+                                "protocol": "udp"
+                            },
+                            {
+                                "external": 8400,
+                                "internal": 8400,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 8500,
+                                "internal": 8500,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 8600,
+                                "internal": 8600,
+                                "ip": "0.0.0.0",
+                                "protocol": "tcp"
+                            },
+                            {
+                                "external": 53,
+                                "internal": 8600,
+                                "ip": "0.0.0.0",
+                                "protocol": "udp"
+                            }
+                        ],
+                        "privileged": null,
+                        "publish_all_ports": null,
+                        "restart": "no",
+                        "rm": false,
+                        "start": true,
+                        "tmpfs": null,
+                        "ulimit": [],
+                        "upload": [],
+                        "user": null,
+                        "userns_mode": null,
+                        "volumes": [
+                            {
+                                "container_path": "/consul/data",
+                                "from_container": "",
+                                "host_path": "/tmp/consul-data",
+                                "read_only": false,
+                                "volume_name": ""
+                            }
+                        ]
+                    }
+                },
+                "consul_container_ip": {
+                    "sensitive": false,
+                    "value": [
+                        "172.23.0.2"
+                    ]
+                }
+            },
+            "root_module": {
+                "child_modules": [
+                    {
+                        "resources": [
+                            {
+                                "address": "data.docker_registry_image.consul",
+                                "mode": "data",
+                                "type": "docker_registry_image",
+                                "name": "consul",
+                                "provider_name": "docker",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f",
+                                    "name": "consul",
+                                    "sha256_digest": "sha256:b31edc821d5e3deae8ce9f9a2070dc3fbaa72f5e1746a85a91ebe551ed8fb17f"
+                                }
+                            },
+                            {
+                                "address": "docker_image.consul",
+                                "mode": "managed",
+                                "type": "docker_image",
+                                "name": "consul",
+                                "provider_name": "docker",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599consul",
+                                    "keep_locally": null,
+                                    "latest": "sha256:f136343b75e00664a7aa4c477a6d1e7b40a9708610fb6e483e884e0cce691599",
+                                    "name": "consul",
+                                    "pull_trigger": null,
+                                    "pull_triggers": [
+                                        "sha256:2ec19048abef7ff163206d7cd30147e6b2e5b73f260c2c6e4d092e648d4f68bc"
+                                    ]
+                                },
+                                "depends_on": [
+                                    "data.docker_registry_image.consul"
+                                ]
+                            },
+                            {
+                                "address": "null_resource.consul_directory",
+                                "mode": "managed",
+                                "type": "null_resource",
+                                "name": "consul_directory",
+                                "provider_name": "null",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "1589975742904562834",
+                                    "triggers": null
+                                }
+                            },
+                            {
+                                "address": "random_pet.pet_name",
+                                "mode": "managed",
+                                "type": "random_pet",
+                                "name": "pet_name",
+                                "provider_name": "random",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "consul-settling-rabbit",
+                                    "keepers": null,
+                                    "length": 2,
+                                    "prefix": "consul",
+                                    "separator": "-"
+                                }
+                            }
+                        ],
+                        "address": "module.consul_container"
+                    },
+                    {
+                        "resources": [
+                            {
+                                "address": "data.docker_registry_image.vault",
+                                "mode": "data",
+                                "type": "docker_registry_image",
+                                "name": "vault",
+                                "provider_name": "docker",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9",
+                                    "name": "vault",
+                                    "sha256_digest": "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"
+                                }
+                            },
+                            {
+                                "address": "docker_image.vault",
+                                "mode": "managed",
+                                "type": "docker_image",
+                                "name": "vault",
+                                "provider_name": "docker",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0vault",
+                                    "keep_locally": null,
+                                    "latest": "sha256:f0d440bc4abb177d972755563cba67860f2d513246bfd03caf11ee7465732db0",
+                                    "name": "vault",
+                                    "pull_trigger": null,
+                                    "pull_triggers": [
+                                        "sha256:ae4853d4a14231889716ffb49d49b40d7e64f459810594ad7c679757ca66e0b9"
+                                    ]
+                                },
+                                "depends_on": [
+                                    "data.docker_registry_image.vault"
+                                ]
+                            },
+                            {
+                                "address": "random_pet.pet_name",
+                                "mode": "managed",
+                                "type": "random_pet",
+                                "name": "pet_name",
+                                "provider_name": "random",
+                                "schema_version": 0,
+                                "values": {
+                                    "id": "vault-wealthy-chimp",
+                                    "keepers": null,
+                                    "length": 2,
+                                    "prefix": "vault",
+                                    "separator": "-"
+                                }
+                            }
+                        ],
+                        "address": "module.vault_container"
+                    },
+                    {
+                        "resources": [
+                            {
+                                "address": "docker_network.private_network",
+                                "mode": "managed",
+                                "type": "docker_network",
+                                "name": "private_network",
+                                "provider_name": "docker",
+                                "schema_version": 0,
+                                "values": {
+                                    "attachable": false,
+                                    "check_duplicate": null,
+                                    "driver": "bridge",
+                                    "id": "5097de260ad4896e30e44718d798acf0403b6717eb787c5446e76b5964f3893a",
+                                    "ingress": false,
+                                    "internal": false,
+                                    "ipam_config": [
+                                        {
+                                            "aux_address": {},
+                                            "gateway": "172.23.0.1",
+                                            "ip_range": "",
+                                            "subnet": "172.23.0.0/16"
+                                        }
+                                    ],
+                                    "ipam_driver": null,
+                                    "ipv6": false,
+                                    "labels": null,
+                                    "name": "ministack",
+                                    "options": {},
+                                    "scope": "local"
+                                }
+                            }
+                        ],
+                        "address": "module.network"
+                    }
+                ]
+            }
+        }
+    },
+    "configuration": {
+        "root_module": {
+            "module_calls": {
+                "consul_container": {
+                    "source": "./modules/consul",
+                    "expressions": {
+                        "network": {
+                            "references": [
+                                "module.network.docker_network"
+                            ]
+                        }
+                    },
+                    "module": {
+                        "outputs": {
+                            "consul_container": {
+                                "expression": {
+                                    "references": [
+                                        "docker_container.consul"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "docker_container.consul",
+                                "mode": "managed",
+                                "type": "docker_container",
+                                "name": "consul",
+                                "provider_config_key": "consul_container:docker",
+                                "expressions": {
+                                    "env": {
+                                        "constant_value": [
+                                            "CONSUL_HTTP_TOKEN=supersecure"
+                                        ]
+                                    },
+                                    "hostname": {
+                                        "constant_value": "consul"
+                                    },
+                                    "image": {
+                                        "references": [
+                                            "docker_image.consul"
+                                        ]
+                                    },
+                                    "name": {
+                                        "references": [
+                                            "random_pet.pet_name"
+                                        ]
+                                    },
+                                    "networks_advanced": [
+                                        {
+                                            "name": {
+                                                "references": [
+                                                    "var.network"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "volumes": [
+                                        {
+                                            "container_path": {
+                                                "constant_value": "/consul/data"
+                                            },
+                                            "host_path": {
+                                                "constant_value": "/tmp/consul-data"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "schema_version": 1,
+                                "depends_on": [
+                                    "null_resource.consul_directory"
+                                ]
+                            },
+                            {
+                                "address": "docker_image.consul",
+                                "mode": "managed",
+                                "type": "docker_image",
+                                "name": "consul",
+                                "provider_config_key": "consul_container:docker",
+                                "expressions": {
+                                    "name": {
+                                        "references": [
+                                            "data.docker_registry_image.consul"
+                                        ]
+                                    },
+                                    "pull_triggers": {
+                                        "references": [
+                                            "data.docker_registry_image.consul"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "null_resource.consul_directory",
+                                "mode": "managed",
+                                "type": "null_resource",
+                                "name": "consul_directory",
+                                "provider_config_key": "consul_container:null",
+                                "provisioners": [
+                                    {
+                                        "type": "local-exec",
+                                        "expressions": {
+                                            "command": {
+                                                "constant_value": "mkdir -p /tmp/consul-data"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "random_pet.pet_name",
+                                "mode": "managed",
+                                "type": "random_pet",
+                                "name": "pet_name",
+                                "provider_config_key": "consul_container:random",
+                                "expressions": {
+                                    "length": {
+                                        "constant_value": 2
+                                    },
+                                    "prefix": {
+                                        "constant_value": "consul"
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.docker_registry_image.consul",
+                                "mode": "data",
+                                "type": "docker_registry_image",
+                                "name": "consul",
+                                "provider_config_key": "consul_container:docker",
+                                "expressions": {
+                                    "name": {
+                                        "constant_value": "consul"
+                                    }
+                                },
+                                "schema_version": 0
+                            }
+                        ],
+                        "variables": {
+                            "consul_ports": {
+                                "default": [
+                                    {
+                                        "external": 8300,
+                                        "internal": 8300,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8301,
+                                        "internal": 8301,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8301,
+                                        "internal": 8301,
+                                        "protocol": "udp"
+                                    },
+                                    {
+                                        "external": 8302,
+                                        "internal": 8302,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8302,
+                                        "internal": 8302,
+                                        "protocol": "udp"
+                                    },
+                                    {
+                                        "external": 8400,
+                                        "internal": 8400,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8500,
+                                        "internal": 8500,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 8600,
+                                        "internal": 8600,
+                                        "protocol": "tcp"
+                                    },
+                                    {
+                                        "external": 53,
+                                        "internal": 8600,
+                                        "protocol": "udp"
+                                    }
+                                ]
+                            },
+                            "network": {
+                                "description": "An entire `docker_network` resource"
+                            }
+                        }
+                    }
+                },
+                "network": {
+                    "source": "./modules/network",
+                    "module": {
+                        "outputs": {
+                            "docker_network": {
+                                "expression": {
+                                    "references": [
+                                        "docker_network.private_network"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "docker_network.private_network",
+                                "mode": "managed",
+                                "type": "docker_network",
+                                "name": "private_network",
+                                "provider_config_key": "network:docker",
+                                "expressions": {
+                                    "driver": {
+                                        "constant_value": "bridge"
+                                    },
+                                    "ipam_config": [
+                                        {
+                                            "gateway": {
+                                                "constant_value": "172.23.0.1"
+                                            },
+                                            "subnet": {
+                                                "constant_value": "172.23.0.0/16"
+                                            }
+                                        }
+                                    ],
+                                    "name": {
+                                        "constant_value": "ministack"
+                                    }
+                                },
+                                "schema_version": 0
+                            }
+                        ]
+                    }
+                },
+                "vault_container": {
+                    "source": "./modules/vault",
+                    "expressions": {
+                        "consul_host": {
+                            "references": [
+                                "module.consul_container.consul_container"
+                            ]
+                        },
+                        "network": {
+                            "references": [
+                                "module.network.docker_network"
+                            ]
+                        }
+                    },
+                    "module": {
+                        "outputs": {
+                            "container_name": {
+                                "expression": {
+                                    "references": [
+                                        "docker_container.vault"
+                                    ]
+                                }
+                            }
+                        },
+                        "resources": [
+                            {
+                                "address": "docker_container.vault",
+                                "mode": "managed",
+                                "type": "docker_container",
+                                "name": "vault",
+                                "provider_config_key": "vault_container:docker",
+                                "expressions": {
+                                    "capabilities": [
+                                        {
+                                            "add": {
+                                                "constant_value": [
+                                                    "IPC_LOCK",
+                                                    "NET_ADMIN",
+                                                    "SYS_PTRACE"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "command": {
+                                        "constant_value": [
+                                            "vault",
+                                            "server",
+                                            "-config=/vault/config/vault-config.json"
+                                        ]
+                                    },
+                                    "image": {
+                                        "references": [
+                                            "docker_image.vault"
+                                        ]
+                                    },
+                                    "name": {
+                                        "references": [
+                                            "random_pet.pet_name"
+                                        ]
+                                    },
+                                    "networks_advanced": [
+                                        {
+                                            "name": {
+                                                "references": [
+                                                    "var.network"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "ports": [
+                                        {
+                                            "external": {
+                                                "constant_value": 8200
+                                            },
+                                            "internal": {
+                                                "constant_value": 8200
+                                            },
+                                            "protocol": {
+                                                "constant_value": "tcp"
+                                            }
+                                        }
+                                    ],
+                                    "upload": [
+                                        {
+                                            "content": {
+                                                "references": [
+                                                    "path.module",
+                                                    "var.consul_host"
+                                                ]
+                                            },
+                                            "file": {
+                                                "constant_value": "/vault/config/vault-config.json"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "schema_version": 1
+                            },
+                            {
+                                "address": "docker_image.vault",
+                                "mode": "managed",
+                                "type": "docker_image",
+                                "name": "vault",
+                                "provider_config_key": "vault_container:docker",
+                                "expressions": {
+                                    "name": {
+                                        "references": [
+                                            "data.docker_registry_image.vault"
+                                        ]
+                                    },
+                                    "pull_triggers": {
+                                        "references": [
+                                            "data.docker_registry_image.vault"
+                                        ]
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "random_pet.pet_name",
+                                "mode": "managed",
+                                "type": "random_pet",
+                                "name": "pet_name",
+                                "provider_config_key": "vault_container:random",
+                                "expressions": {
+                                    "length": {
+                                        "constant_value": 2
+                                    },
+                                    "prefix": {
+                                        "constant_value": "vault"
+                                    }
+                                },
+                                "schema_version": 0
+                            },
+                            {
+                                "address": "data.docker_registry_image.vault",
+                                "mode": "data",
+                                "type": "docker_registry_image",
+                                "name": "vault",
+                                "provider_config_key": "vault_container:docker",
+                                "expressions": {
+                                    "name": {
+                                        "constant_value": "vault"
+                                    }
+                                },
+                                "schema_version": 0
+                            }
+                        ],
+                        "variables": {
+                            "consul_host": {},
+                            "network": {
+                                "description": "An entire `docker_network` resource"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
