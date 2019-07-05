@@ -1,0 +1,1996 @@
+{
+    "format_version": "0.1",
+    "provider_schemas": {
+        "docker": {
+            "provider": {
+                "version": 0,
+                "block": {
+                    "attributes": {
+                        "ca_material": {
+                            "type": "string",
+                            "description": "PEM-encoded content of Docker host CA certificate",
+                            "optional": true
+                        },
+                        "cert_material": {
+                            "type": "string",
+                            "description": "PEM-encoded content of Docker client certificate",
+                            "optional": true
+                        },
+                        "cert_path": {
+                            "type": "string",
+                            "description": "Path to directory with Docker TLS config",
+                            "optional": true
+                        },
+                        "host": {
+                            "type": "string",
+                            "description": "The Docker daemon address",
+                            "optional": true
+                        },
+                        "key_material": {
+                            "type": "string",
+                            "description": "PEM-encoded content of Docker client private key",
+                            "optional": true
+                        }
+                    },
+                    "block_types": {
+                        "registry_auth": {
+                            "nesting_mode": "set",
+                            "block": {
+                                "attributes": {
+                                    "address": {
+                                        "type": "string",
+                                        "description": "Address of the registry",
+                                        "required": true
+                                    },
+                                    "config_file": {
+                                        "type": "string",
+                                        "description": "Path to docker json file for registry auth",
+                                        "optional": true
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password for the registry",
+                                        "optional": true,
+                                        "sensitive": true
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "description": "Username for the registry",
+                                        "optional": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "resource_schemas": {
+                "docker_config": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "data": {
+                                "type": "string",
+                                "description": "Base64-url-safe-encoded config data",
+                                "required": true,
+                                "sensitive": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "User-defined name of the config",
+                                "required": true
+                            }
+                        }
+                    }
+                },
+                "docker_container": {
+                    "version": 1,
+                    "block": {
+                        "attributes": {
+                            "attach": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "bridge": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "command": {
+                                "type": [
+                                    "list",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "container_logs": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "cpu_set": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "cpu_shares": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "destroy_grace_seconds": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "dns": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "dns_opts": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "dns_search": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "domainname": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "entrypoint": {
+                                "type": [
+                                    "list",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "env": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "exit_code": {
+                                "type": "number",
+                                "computed": true
+                            },
+                            "gateway": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "hostname": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "image": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "ip_address": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "ip_prefix_length": {
+                                "type": "number",
+                                "computed": true
+                            },
+                            "labels": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "links": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "log_driver": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "log_opts": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "logs": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "max_retry_count": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "memory": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "memory_swap": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "must_run": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "network_alias": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "description": "Set an alias for the container in all specified networks",
+                                "optional": true
+                            },
+                            "network_data": {
+                                "type": [
+                                    "list",
+                                    [
+                                        "object",
+                                        {
+                                            "gateway": "string",
+                                            "ip_address": "string",
+                                            "ip_prefix_length": "number",
+                                            "network_name": "string"
+                                        }
+                                    ]
+                                ],
+                                "computed": true
+                            },
+                            "network_mode": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "networks": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "pid_mode": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "privileged": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "publish_all_ports": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "restart": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "rm": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "start": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "tmpfs": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "user": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "userns_mode": {
+                                "type": "string",
+                                "optional": true
+                            }
+                        },
+                        "block_types": {
+                            "capabilities": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "add": {
+                                            "type": [
+                                                "set",
+                                                "string"
+                                            ],
+                                            "optional": true
+                                        },
+                                        "drop": {
+                                            "type": [
+                                                "set",
+                                                "string"
+                                            ],
+                                            "optional": true
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "devices": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "container_path": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "host_path": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "permissions": {
+                                            "type": "string",
+                                            "optional": true
+                                        }
+                                    }
+                                }
+                            },
+                            "healthcheck": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "interval": {
+                                            "type": "string",
+                                            "description": "Time between running the check (ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "retries": {
+                                            "type": "number",
+                                            "description": "Consecutive failures needed to report unhealthy",
+                                            "optional": true
+                                        },
+                                        "start_period": {
+                                            "type": "string",
+                                            "description": "Start period for the container to initialize before counting retries towards unstable (ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "test": {
+                                            "type": [
+                                                "list",
+                                                "string"
+                                            ],
+                                            "description": "The test to perform as list",
+                                            "required": true
+                                        },
+                                        "timeout": {
+                                            "type": "string",
+                                            "description": "Maximum time to allow one check to run (ms|s|m|h)",
+                                            "optional": true
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "host": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "host": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "ip": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            },
+                            "mounts": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "read_only": {
+                                            "type": "bool",
+                                            "description": "Whether the mount should be read-only",
+                                            "optional": true
+                                        },
+                                        "source": {
+                                            "type": "string",
+                                            "description": "Mount source (e.g. a volume name, a host path)",
+                                            "optional": true
+                                        },
+                                        "target": {
+                                            "type": "string",
+                                            "description": "Container path",
+                                            "required": true
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "The mount type",
+                                            "required": true
+                                        }
+                                    },
+                                    "block_types": {
+                                        "bind_options": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "propagation": {
+                                                        "type": "string",
+                                                        "description": "A propagation mode with the value",
+                                                        "optional": true
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        },
+                                        "tmpfs_options": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "mode": {
+                                                        "type": "number",
+                                                        "description": "The permission mode for the tmpfs mount in an integer",
+                                                        "optional": true
+                                                    },
+                                                    "size_bytes": {
+                                                        "type": "number",
+                                                        "description": "The size for the tmpfs mount in bytes",
+                                                        "optional": true
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        },
+                                        "volume_options": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "driver_name": {
+                                                        "type": "string",
+                                                        "description": "Name of the driver to use to create the volume.",
+                                                        "optional": true
+                                                    },
+                                                    "driver_options": {
+                                                        "type": [
+                                                            "map",
+                                                            "string"
+                                                        ],
+                                                        "description": "key/value map of driver specific options",
+                                                        "optional": true
+                                                    },
+                                                    "labels": {
+                                                        "type": [
+                                                            "map",
+                                                            "string"
+                                                        ],
+                                                        "description": "User-defined key/value metadata",
+                                                        "optional": true
+                                                    },
+                                                    "no_copy": {
+                                                        "type": "bool",
+                                                        "description": "Populate volume with data from the target",
+                                                        "optional": true
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        }
+                                    }
+                                }
+                            },
+                            "networks_advanced": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "aliases": {
+                                            "type": [
+                                                "set",
+                                                "string"
+                                            ],
+                                            "optional": true
+                                        },
+                                        "ipv4_address": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "ipv6_address": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            },
+                            "ports": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "external": {
+                                            "type": "number",
+                                            "optional": true,
+                                            "computed": true
+                                        },
+                                        "internal": {
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "ip": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "protocol": {
+                                            "type": "string",
+                                            "optional": true
+                                        }
+                                    }
+                                }
+                            },
+                            "ulimit": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "hard": {
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "soft": {
+                                            "type": "number",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            },
+                            "upload": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "content": {
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "executable": {
+                                            "type": "bool",
+                                            "optional": true
+                                        },
+                                        "file": {
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            },
+                            "volumes": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "container_path": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "from_container": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "host_path": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "read_only": {
+                                            "type": "bool",
+                                            "optional": true
+                                        },
+                                        "volume_name": {
+                                            "type": "string",
+                                            "optional": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "docker_image": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keep_locally": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "latest": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "pull_trigger": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "pull_triggers": {
+                                "type": [
+                                    "set",
+                                    "string"
+                                ],
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "docker_network": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "attachable": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "check_duplicate": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "driver": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "ingress": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "internal": {
+                                "type": "bool",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "ipam_driver": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "ipv6": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "labels": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "options": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true,
+                                "computed": true
+                            },
+                            "scope": {
+                                "type": "string",
+                                "computed": true
+                            }
+                        },
+                        "block_types": {
+                            "ipam_config": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "aux_address": {
+                                            "type": [
+                                                "map",
+                                                "string"
+                                            ],
+                                            "optional": true
+                                        },
+                                        "gateway": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "ip_range": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "subnet": {
+                                            "type": "string",
+                                            "optional": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "docker_secret": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "data": {
+                                "type": "string",
+                                "description": "User-defined name of the secret",
+                                "required": true,
+                                "sensitive": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "labels": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "User-defined name of the secret",
+                                "required": true
+                            }
+                        }
+                    }
+                },
+                "docker_service": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "auth": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "labels": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "description": "User-defined key/value metadata",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "Name of the service",
+                                "required": true
+                            }
+                        },
+                        "block_types": {
+                            "converge_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "delay": {
+                                            "type": "string",
+                                            "description": "The interval to check if the desired state is reached (ms|s). Default: 7s",
+                                            "optional": true
+                                        },
+                                        "timeout": {
+                                            "type": "string",
+                                            "description": "The timeout of the service to reach the desired state (s|m). Default: 3m",
+                                            "optional": true
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "endpoint_spec": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "mode": {
+                                            "type": "string",
+                                            "description": "The mode of resolution to use for internal load balancing between tasks",
+                                            "optional": true,
+                                            "computed": true
+                                        }
+                                    },
+                                    "block_types": {
+                                        "ports": {
+                                            "nesting_mode": "set",
+                                            "block": {
+                                                "attributes": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "A random name for the port",
+                                                        "optional": true
+                                                    },
+                                                    "protocol": {
+                                                        "type": "string",
+                                                        "description": "Rrepresents the protocol of a port: 'tcp', 'udp' or 'sctp'",
+                                                        "optional": true
+                                                    },
+                                                    "publish_mode": {
+                                                        "type": "string",
+                                                        "description": "Represents the mode in which the port is to be published: 'ingress' or 'host'",
+                                                        "optional": true
+                                                    },
+                                                    "published_port": {
+                                                        "type": "number",
+                                                        "description": "The port on the swarm hosts.",
+                                                        "optional": true
+                                                    },
+                                                    "target_port": {
+                                                        "type": "number",
+                                                        "description": "The port inside the container",
+                                                        "required": true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "mode": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "global": {
+                                            "type": "bool",
+                                            "description": "The global service mode",
+                                            "optional": true
+                                        }
+                                    },
+                                    "block_types": {
+                                        "replicated": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "replicas": {
+                                                        "type": "number",
+                                                        "description": "The amount of replicas of the service",
+                                                        "optional": true
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "rollback_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "delay": {
+                                            "type": "string",
+                                            "description": "Delay between task rollbacks (ns|us|ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "failure_action": {
+                                            "type": "string",
+                                            "description": "Action on rollback failure: pause | continue",
+                                            "optional": true
+                                        },
+                                        "max_failure_ratio": {
+                                            "type": "string",
+                                            "description": "Failure rate to tolerate during a rollback",
+                                            "optional": true
+                                        },
+                                        "monitor": {
+                                            "type": "string",
+                                            "description": "Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "order": {
+                                            "type": "string",
+                                            "description": "Rollback order: either 'stop-first' or 'start-first'",
+                                            "optional": true
+                                        },
+                                        "parallelism": {
+                                            "type": "number",
+                                            "description": "Maximum number of tasks to be rollbacked in one iteration",
+                                            "optional": true
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            },
+                            "task_spec": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "force_update": {
+                                            "type": "number",
+                                            "description": "A counter that triggers an update even if no relevant parameters have been changed. See https://github.com/docker/swarmkit/blob/master/api/specs.proto#L126",
+                                            "optional": true,
+                                            "computed": true
+                                        },
+                                        "networks": {
+                                            "type": [
+                                                "set",
+                                                "string"
+                                            ],
+                                            "description": "Ids of the networks in which the  container will be put in.",
+                                            "optional": true
+                                        },
+                                        "restart_policy": {
+                                            "type": [
+                                                "map",
+                                                "string"
+                                            ],
+                                            "description": "Specification for the restart policy which applies to containers created as part of this service.",
+                                            "optional": true,
+                                            "computed": true
+                                        },
+                                        "runtime": {
+                                            "type": "string",
+                                            "description": "Runtime is the type of runtime specified for the task executor. See https://github.com/moby/moby/blob/master/api/types/swarm/runtime.go",
+                                            "optional": true,
+                                            "computed": true
+                                        }
+                                    },
+                                    "block_types": {
+                                        "container_spec": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "args": {
+                                                        "type": [
+                                                            "list",
+                                                            "string"
+                                                        ],
+                                                        "description": "Arguments to the command",
+                                                        "optional": true
+                                                    },
+                                                    "command": {
+                                                        "type": [
+                                                            "list",
+                                                            "string"
+                                                        ],
+                                                        "description": "The command to be run in the image",
+                                                        "optional": true
+                                                    },
+                                                    "dir": {
+                                                        "type": "string",
+                                                        "description": "The working directory for commands to run in",
+                                                        "optional": true
+                                                    },
+                                                    "env": {
+                                                        "type": [
+                                                            "map",
+                                                            "string"
+                                                        ],
+                                                        "description": "A list of environment variables in the form VAR=\"value\"",
+                                                        "optional": true
+                                                    },
+                                                    "groups": {
+                                                        "type": [
+                                                            "list",
+                                                            "string"
+                                                        ],
+                                                        "description": "A list of additional groups that the container process will run as",
+                                                        "optional": true
+                                                    },
+                                                    "hostname": {
+                                                        "type": "string",
+                                                        "description": "The hostname to use for the container, as a valid RFC 1123 hostname",
+                                                        "optional": true
+                                                    },
+                                                    "image": {
+                                                        "type": "string",
+                                                        "description": "The image name to use for the containers of the service",
+                                                        "required": true
+                                                    },
+                                                    "isolation": {
+                                                        "type": "string",
+                                                        "description": "Isolation technology of the containers running the service. (Windows only)",
+                                                        "optional": true
+                                                    },
+                                                    "labels": {
+                                                        "type": [
+                                                            "map",
+                                                            "string"
+                                                        ],
+                                                        "description": "User-defined key/value metadata",
+                                                        "optional": true
+                                                    },
+                                                    "read_only": {
+                                                        "type": "bool",
+                                                        "description": "Mount the container's root filesystem as read only",
+                                                        "optional": true
+                                                    },
+                                                    "stop_grace_period": {
+                                                        "type": "string",
+                                                        "description": "Amount of time to wait for the container to terminate before forcefully removing it (ms|s|m|h)",
+                                                        "optional": true,
+                                                        "computed": true
+                                                    },
+                                                    "stop_signal": {
+                                                        "type": "string",
+                                                        "description": "Signal to stop the container",
+                                                        "optional": true
+                                                    },
+                                                    "user": {
+                                                        "type": "string",
+                                                        "description": "The user inside the container",
+                                                        "optional": true
+                                                    }
+                                                },
+                                                "block_types": {
+                                                    "configs": {
+                                                        "nesting_mode": "set",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "config_id": {
+                                                                    "type": "string",
+                                                                    "description": "ID of the specific config that we're referencing",
+                                                                    "required": true
+                                                                },
+                                                                "config_name": {
+                                                                    "type": "string",
+                                                                    "description": "Name of the config that this references, but this is just provided for lookup/display purposes. The config in the reference will be identified by its ID",
+                                                                    "optional": true
+                                                                },
+                                                                "file_name": {
+                                                                    "type": "string",
+                                                                    "description": "Represents the final filename in the filesystem",
+                                                                    "required": true
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "dns_config": {
+                                                        "nesting_mode": "list",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "nameservers": {
+                                                                    "type": [
+                                                                        "list",
+                                                                        "string"
+                                                                    ],
+                                                                    "description": "The IP addresses of the name servers",
+                                                                    "required": true
+                                                                },
+                                                                "options": {
+                                                                    "type": [
+                                                                        "list",
+                                                                        "string"
+                                                                    ],
+                                                                    "description": "A list of internal resolver variables to be modified (e.g., debug, ndots:3, etc.)",
+                                                                    "optional": true
+                                                                },
+                                                                "search": {
+                                                                    "type": [
+                                                                        "list",
+                                                                        "string"
+                                                                    ],
+                                                                    "description": "A search list for host-name lookup",
+                                                                    "optional": true
+                                                                }
+                                                            }
+                                                        },
+                                                        "max_items": 1
+                                                    },
+                                                    "healthcheck": {
+                                                        "nesting_mode": "list",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "interval": {
+                                                                    "type": "string",
+                                                                    "description": "Time between running the check (ms|s|m|h)",
+                                                                    "optional": true
+                                                                },
+                                                                "retries": {
+                                                                    "type": "number",
+                                                                    "description": "Consecutive failures needed to report unhealthy",
+                                                                    "optional": true
+                                                                },
+                                                                "start_period": {
+                                                                    "type": "string",
+                                                                    "description": "Start period for the container to initialize before counting retries towards unstable (ms|s|m|h)",
+                                                                    "optional": true
+                                                                },
+                                                                "test": {
+                                                                    "type": [
+                                                                        "list",
+                                                                        "string"
+                                                                    ],
+                                                                    "description": "The test to perform as list",
+                                                                    "required": true
+                                                                },
+                                                                "timeout": {
+                                                                    "type": "string",
+                                                                    "description": "Maximum time to allow one check to run (ms|s|m|h)",
+                                                                    "optional": true
+                                                                }
+                                                            }
+                                                        },
+                                                        "max_items": 1
+                                                    },
+                                                    "hosts": {
+                                                        "nesting_mode": "set",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "host": {
+                                                                    "type": "string",
+                                                                    "required": true
+                                                                },
+                                                                "ip": {
+                                                                    "type": "string",
+                                                                    "required": true
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "mounts": {
+                                                        "nesting_mode": "set",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "read_only": {
+                                                                    "type": "bool",
+                                                                    "description": "Whether the mount should be read-only",
+                                                                    "optional": true
+                                                                },
+                                                                "source": {
+                                                                    "type": "string",
+                                                                    "description": "Mount source (e.g. a volume name, a host path)",
+                                                                    "optional": true
+                                                                },
+                                                                "target": {
+                                                                    "type": "string",
+                                                                    "description": "Container path",
+                                                                    "required": true
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "description": "The mount type",
+                                                                    "required": true
+                                                                }
+                                                            },
+                                                            "block_types": {
+                                                                "bind_options": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "propagation": {
+                                                                                "type": "string",
+                                                                                "description": "A propagation mode with the value",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                },
+                                                                "tmpfs_options": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "mode": {
+                                                                                "type": "number",
+                                                                                "description": "The permission mode for the tmpfs mount in an integer",
+                                                                                "optional": true
+                                                                            },
+                                                                            "size_bytes": {
+                                                                                "type": "number",
+                                                                                "description": "The size for the tmpfs mount in bytes",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                },
+                                                                "volume_options": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "driver_name": {
+                                                                                "type": "string",
+                                                                                "description": "Name of the driver to use to create the volume.",
+                                                                                "optional": true
+                                                                            },
+                                                                            "driver_options": {
+                                                                                "type": [
+                                                                                    "map",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "key/value map of driver specific options",
+                                                                                "optional": true
+                                                                            },
+                                                                            "labels": {
+                                                                                "type": [
+                                                                                    "map",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "User-defined key/value metadata",
+                                                                                "optional": true
+                                                                            },
+                                                                            "no_copy": {
+                                                                                "type": "bool",
+                                                                                "description": "Populate volume with data from the target",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "privileges": {
+                                                        "nesting_mode": "list",
+                                                        "block": {
+                                                            "block_types": {
+                                                                "credential_spec": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "file": {
+                                                                                "type": "string",
+                                                                                "description": "Load credential spec from this file",
+                                                                                "optional": true
+                                                                            },
+                                                                            "registry": {
+                                                                                "type": "string",
+                                                                                "description": "Load credential spec from this value in the Windows registry",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                },
+                                                                "se_linux_context": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "disable": {
+                                                                                "type": "bool",
+                                                                                "description": "Disable SELinux",
+                                                                                "optional": true
+                                                                            },
+                                                                            "level": {
+                                                                                "type": "string",
+                                                                                "description": "SELinux level label",
+                                                                                "optional": true
+                                                                            },
+                                                                            "role": {
+                                                                                "type": "string",
+                                                                                "description": "SELinux role label",
+                                                                                "optional": true
+                                                                            },
+                                                                            "type": {
+                                                                                "type": "string",
+                                                                                "description": "SELinux type label",
+                                                                                "optional": true
+                                                                            },
+                                                                            "user": {
+                                                                                "type": "string",
+                                                                                "description": "SELinux user label",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                }
+                                                            }
+                                                        },
+                                                        "max_items": 1
+                                                    },
+                                                    "secrets": {
+                                                        "nesting_mode": "set",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "file_name": {
+                                                                    "type": "string",
+                                                                    "description": "Represents the final filename in the filesystem",
+                                                                    "required": true
+                                                                },
+                                                                "secret_id": {
+                                                                    "type": "string",
+                                                                    "description": "ID of the specific secret that we're referencing",
+                                                                    "required": true
+                                                                },
+                                                                "secret_name": {
+                                                                    "type": "string",
+                                                                    "description": "Name of the secret that this references, but this is just provided for lookup/display purposes. The config in the reference will be identified by its ID",
+                                                                    "optional": true
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "min_items": 1,
+                                            "max_items": 1
+                                        },
+                                        "log_driver": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "The logging driver to use: one of none|json-file|syslog|journald|gelf|fluentd|awslogs|splunk|etwlogs|gcplogs",
+                                                        "required": true
+                                                    },
+                                                    "options": {
+                                                        "type": [
+                                                            "map",
+                                                            "string"
+                                                        ],
+                                                        "description": "The options for the logging driver",
+                                                        "optional": true
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        },
+                                        "placement": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "attributes": {
+                                                    "constraints": {
+                                                        "type": [
+                                                            "set",
+                                                            "string"
+                                                        ],
+                                                        "description": "An array of constraints. e.g.: node.role==manager",
+                                                        "optional": true
+                                                    },
+                                                    "prefs": {
+                                                        "type": [
+                                                            "set",
+                                                            "string"
+                                                        ],
+                                                        "description": "Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence, e.g.: spread=node.role.manager",
+                                                        "optional": true
+                                                    }
+                                                },
+                                                "block_types": {
+                                                    "platforms": {
+                                                        "nesting_mode": "set",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "architecture": {
+                                                                    "type": "string",
+                                                                    "description": "The architecture, e.g. amd64",
+                                                                    "required": true
+                                                                },
+                                                                "os": {
+                                                                    "type": "string",
+                                                                    "description": "The operation system, e.g. linux",
+                                                                    "required": true
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        },
+                                        "resources": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                                "block_types": {
+                                                    "limits": {
+                                                        "nesting_mode": "list",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "memory_bytes": {
+                                                                    "type": "number",
+                                                                    "description": "The amounf of memory in bytes the container allocates",
+                                                                    "optional": true
+                                                                },
+                                                                "nano_cpus": {
+                                                                    "type": "number",
+                                                                    "description": "CPU shares in units of 1/1e9 (or 10^-9) of the CPU. Should be at least 1000000",
+                                                                    "optional": true
+                                                                }
+                                                            },
+                                                            "block_types": {
+                                                                "generic_resources": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "discrete_resources_spec": {
+                                                                                "type": [
+                                                                                    "set",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "The Integer resources",
+                                                                                "optional": true
+                                                                            },
+                                                                            "named_resources_spec": {
+                                                                                "type": [
+                                                                                    "set",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "The String resources",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                }
+                                                            }
+                                                        },
+                                                        "max_items": 1
+                                                    },
+                                                    "reservation": {
+                                                        "nesting_mode": "list",
+                                                        "block": {
+                                                            "attributes": {
+                                                                "memory_bytes": {
+                                                                    "type": "number",
+                                                                    "description": "The amounf of memory in bytes the container allocates",
+                                                                    "optional": true
+                                                                },
+                                                                "nano_cpus": {
+                                                                    "type": "number",
+                                                                    "description": "CPU shares in units of 1/1e9 (or 10^-9) of the CPU. Should be at least 1000000",
+                                                                    "optional": true
+                                                                }
+                                                            },
+                                                            "block_types": {
+                                                                "generic_resources": {
+                                                                    "nesting_mode": "list",
+                                                                    "block": {
+                                                                        "attributes": {
+                                                                            "discrete_resources_spec": {
+                                                                                "type": [
+                                                                                    "set",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "The Integer resources",
+                                                                                "optional": true
+                                                                            },
+                                                                            "named_resources_spec": {
+                                                                                "type": [
+                                                                                    "set",
+                                                                                    "string"
+                                                                                ],
+                                                                                "description": "The String resources",
+                                                                                "optional": true
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "max_items": 1
+                                                                }
+                                                            }
+                                                        },
+                                                        "max_items": 1
+                                                    }
+                                                }
+                                            },
+                                            "max_items": 1
+                                        }
+                                    }
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                            },
+                            "update_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                    "attributes": {
+                                        "delay": {
+                                            "type": "string",
+                                            "description": "Delay between task updates (ns|us|ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "failure_action": {
+                                            "type": "string",
+                                            "description": "Action on update failure: pause | continue | rollback",
+                                            "optional": true
+                                        },
+                                        "max_failure_ratio": {
+                                            "type": "string",
+                                            "description": "Failure rate to tolerate during an update",
+                                            "optional": true
+                                        },
+                                        "monitor": {
+                                            "type": "string",
+                                            "description": "Duration after each task update to monitor for failure (ns|us|ms|s|m|h)",
+                                            "optional": true
+                                        },
+                                        "order": {
+                                            "type": "string",
+                                            "description": "Update order: either 'stop-first' or 'start-first'",
+                                            "optional": true
+                                        },
+                                        "parallelism": {
+                                            "type": "number",
+                                            "description": "Maximum number of tasks to be updated in one iteration",
+                                            "optional": true
+                                        }
+                                    }
+                                },
+                                "max_items": 1
+                            }
+                        }
+                    }
+                },
+                "docker_volume": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "driver": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "driver_opts": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "labels": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "mountpoint": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            }
+                        }
+                    }
+                }
+            },
+            "data_source_schemas": {
+                "docker_network": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "driver": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "internal": {
+                                "type": "bool",
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "options": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "computed": true
+                            },
+                            "scope": {
+                                "type": "string",
+                                "computed": true
+                            }
+                        },
+                        "block_types": {
+                            "ipam_config": {
+                                "nesting_mode": "set",
+                                "block": {
+                                    "attributes": {
+                                        "aux_address": {
+                                            "type": [
+                                                "map",
+                                                "string"
+                                            ],
+                                            "optional": true
+                                        },
+                                        "gateway": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "ip_range": {
+                                            "type": "string",
+                                            "optional": true
+                                        },
+                                        "subnet": {
+                                            "type": "string",
+                                            "optional": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "docker_registry_image": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "sha256_digest": {
+                                "type": "string",
+                                "computed": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "null": {
+            "provider": {
+                "version": 0,
+                "block": {}
+            },
+            "resource_schemas": {
+                "null_resource": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "triggers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            }
+                        }
+                    }
+                }
+            },
+            "data_source_schemas": {
+                "null_data_source": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "has_computed_default": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "inputs": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "outputs": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "computed": true
+                            },
+                            "random": {
+                                "type": "string",
+                                "computed": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "random": {
+            "provider": {
+                "version": 0,
+                "block": {}
+            },
+            "resource_schemas": {
+                "random_id": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "b64": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "b64_std": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "b64_url": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "byte_length": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "dec": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "hex": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "prefix": {
+                                "type": "string",
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "random_integer": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "max": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "min": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "result": {
+                                "type": "number",
+                                "computed": true
+                            },
+                            "seed": {
+                                "type": "string",
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "random_pet": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "length": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "prefix": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "separator": {
+                                "type": "string",
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "random_shuffle": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "input": {
+                                "type": [
+                                    "list",
+                                    "string"
+                                ],
+                                "required": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "result": {
+                                "type": [
+                                    "list",
+                                    "string"
+                                ],
+                                "computed": true
+                            },
+                            "result_count": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "seed": {
+                                "type": "string",
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "random_string": {
+                    "version": 1,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "length": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "lower": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "min_lower": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "min_numeric": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "min_special": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "min_upper": {
+                                "type": "number",
+                                "optional": true
+                            },
+                            "number": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "override_special": {
+                                "type": "string",
+                                "optional": true
+                            },
+                            "result": {
+                                "type": "string",
+                                "computed": true
+                            },
+                            "special": {
+                                "type": "bool",
+                                "optional": true
+                            },
+                            "upper": {
+                                "type": "bool",
+                                "optional": true
+                            }
+                        }
+                    }
+                },
+                "random_uuid": {
+                    "version": 0,
+                    "block": {
+                        "attributes": {
+                            "id": {
+                                "type": "string",
+                                "optional": true,
+                                "computed": true
+                            },
+                            "keepers": {
+                                "type": [
+                                    "map",
+                                    "string"
+                                ],
+                                "optional": true
+                            },
+                            "result": {
+                                "type": "string",
+                                "computed": true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+## Some sample queries:
+
+# List resources in configuration root module
+jq .configuration.root_module.resources[].address plan.json
+
+# List all variables
+jq .variables plan.json
+
+# List all resource changes
+jq "[.resource_changes[] | { resource: .address, changes: .change.actions }]" plan.json

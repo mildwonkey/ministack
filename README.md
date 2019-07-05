@@ -1,5 +1,6 @@
 # Ministack
+This is an as-minimal-as-it-gets Vault and Consul setup using Terraform. There are many, many better ways to do this. 
 
-This was done for fun! I don't recommend anyone use this! Exclamation!!!
+The configuration in this repository works, but is: insecure, not scalable, and only intended for local development. The code is being used as an example in my [HashiConfEU talk](https://hashiconfeu.hashicorp.com/speakers/kristin-laemmert).
 
-This is an as-minimal-as-it-gets Vault and Consul setup using Terraform. This is useful mainly as a demonstration or for local experimentation. There are many, many better ways to do this. 
+
